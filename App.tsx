@@ -15,7 +15,10 @@ export default function App() {
           <Stack.Screen
             name="|Contacts"
             component={Ui}
-            options={{ title: 'Contacts' }}
+            options={{
+              title: 'Contacts',
+              headerTitleAlign: 'center'
+            }}
           />
         </Stack.Navigator>
       </NavigationContainer>

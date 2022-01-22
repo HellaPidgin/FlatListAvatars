@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { data } from "../data"
 import { ContactDataType } from '../shared/types';
 import AvataImage, { AVATAR_IMAGE_SIZE } from './widgets/AvataImage';
+import ContactDetails, { CONTACT_DETAIL_HEIGHT } from './widgets/ContactDetails';
 
 const Background = styled.View`
   flex:1
@@ -12,8 +13,11 @@ const AvatarListContainer = styled.View`
   height: ${AVATAR_IMAGE_SIZE}
 `
 const contacts: React.FC = () => {
-  const [contactsData, setContactsData] = useState<ContactDataType[]>([])
+  const [contactsData, setContactsData] = useState<ContactDataType[]>([]);
+  const [activeContactIndex, setActiveContactIndex] = useState<number>(0);
+
   const imagesListRef = useRef<FlatList>(null)
+  const detailsListRef = useRef<FlatList>(null)
   const scrollX = useRef(new Animated.Value(0));
 
   const getData = async () => {
@@ -57,6 +61,14 @@ const contacts: React.FC = () => {
           renderItem={(data) => <AvataImage listMax={contactsData.length} index={data.index} image={data.item.image} />}
         />
       </AvatarListContainer>
+      <FlatList
+        ref={detailsListRef}
+        data={contactsData}
+        snapToInterval={CONTACT_DETAIL_HEIGHT}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item, index) => index + item.first_name}
+        renderItem={(data) => <ContactDetails {...data.item} />}
+      />
     </Background>
   );
 }
