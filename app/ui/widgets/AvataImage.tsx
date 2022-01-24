@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { ContactDataType } from '../../shared/types';
 
-export const AVATAR_IMAGE_SIZE: number = 60;
+export const AVATAR_IMAGE_SIZE: number = 70;
 const width = Dimensions.get('window').width;
 const AVATAR_SPACE_SIZE = (width - AVATAR_IMAGE_SIZE) / 2
 
@@ -27,8 +27,8 @@ const AvatarImageContainer = styled.TouchableOpacity`
 `
 
 const AvatarImage = styled.Image`
-    width: ${AVATAR_IMAGE_SIZE}px;
-    height: ${AVATAR_IMAGE_SIZE}px;
+    width: ${AVATAR_IMAGE_SIZE-10}px;
+    height: ${AVATAR_IMAGE_SIZE-10}px;
 `
 
 interface PropTypes {

@@ -28,7 +28,7 @@ const contacts: React.FC = () => {
 
   const getItemLayout = (data: any, index: number) => ({
     length: 50,
-    offset: 50 * index,
+    offset: 0,
     index,
   })
 
