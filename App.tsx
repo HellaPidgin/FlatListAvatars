@@ -13,7 +13,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-            name="|Contacts"
+            name="Contacts"
             component={Ui}
             options={{
               title: 'Contacts',
