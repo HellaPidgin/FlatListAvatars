@@ -40,10 +40,11 @@ const contacts: React.FC = () => {
   }) => {
     if (scrollingList === "Avatars") {
       const scrollX = event.nativeEvent.contentOffset.x;
-      console.log(
-        (event.nativeEvent.contentOffset.x / AVATAR_IMAGE_SIZE) *
-          CONTACT_DETAIL_HEIGHT
-      );
+      //  console.log(
+      //     (event.nativeEvent.contentOffset.x / AVATAR_IMAGE_SIZE) *
+      //       CONTACT_DETAIL_HEIGHT
+      //   );
+      setActiveContactIndex(Math.floor(scrollX / AVATAR_IMAGE_SIZE));
       detailsListRef.current?.scrollToOffset({
         animated: true,
         offset: (scrollX / AVATAR_IMAGE_SIZE) * CONTACT_DETAIL_HEIGHT,
@@ -55,12 +56,17 @@ const contacts: React.FC = () => {
   }) => {
     if (scrollingList === "Details") {
       const scrollY = event.nativeEvent.contentOffset.y;
-      console.log(event.nativeEvent.contentOffset.y / CONTACT_DETAIL_HEIGHT);
+      // console.log(event.nativeEvent.contentOffset.y / CONTACT_DETAIL_HEIGHT);
+      setActiveContactIndex(Math.floor(scrollY / CONTACT_DETAIL_HEIGHT));
       imagesListRef.current?.scrollToOffset({
         animated: true,
         offset: (scrollY / CONTACT_DETAIL_HEIGHT) * AVATAR_IMAGE_SIZE,
       });
     }
+  };
+
+  const handleAvatarPress = (index: number) => {
+    setActiveContactIndex(index);
   };
 
   return (
@@ -81,6 +87,8 @@ const contacts: React.FC = () => {
               listMax={contactsData.length}
               index={data.index}
               image={data.item.image}
+              activeIndex={activeContactIndex}
+              handleAvatarPress={handleAvatarPress}
             />
           )}
         />

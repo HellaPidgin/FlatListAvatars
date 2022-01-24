@@ -2,6 +2,7 @@ import { View, Text, ImageSourcePropType, Dimensions } from 'react-native';
 import React from 'react';
 import styled from 'styled-components/native';
 import { ContactDataType } from '../../shared/types';
+import { colors } from '../../shared/colorScheme';
 
 export const AVATAR_IMAGE_SIZE: number = 70;
 const width = Dimensions.get('window').width;
@@ -25,6 +26,17 @@ const AvatarImageContainer = styled.TouchableOpacity`
   padding: 2px;
 
 `
+const ActiveAvatarImageContainer = styled.TouchableOpacity`
+  width: ${AVATAR_IMAGE_SIZE}px;
+  height: ${AVATAR_IMAGE_SIZE}px;
+  border-radius: ${AVATAR_IMAGE_SIZE / 2}px;
+  border-width: 5px;
+  border-color: ${colors.GreenSheen};
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+
+`
 
 const AvatarImage = styled.Image`
     width: ${AVATAR_IMAGE_SIZE-10}px;
@@ -33,34 +45,59 @@ const AvatarImage = styled.Image`
 
 interface PropTypes {
     image: ImageSourcePropType,
+    activeIndex: number,
+    handleAvatarPress: (index: number) => void,
     index: number,
     listMax: number,
 }
 
 const AvataImage = (props: PropTypes) => {
+
+    const isActiveContact = props.index === props.activeIndex;
     if (props.index === 0) {
         return (
-            <HorizontalView>
-                <SpaceBeforeAvatar />
-                <AvatarImageContainer>
-                    <AvatarImage source={props.image} resizeMode='contain' />
-                </AvatarImageContainer>
-            </HorizontalView>)
+          <HorizontalView>
+            <SpaceBeforeAvatar />
+            {isActiveContact ? (
+              <ActiveAvatarImageContainer>
+                <AvatarImage source={props.image} resizeMode="contain" />
+              </ActiveAvatarImageContainer>
+            ) : (
+              <AvatarImageContainer>
+                <AvatarImage source={props.image} resizeMode="contain" />
+              </AvatarImageContainer>
+            )}
+          </HorizontalView>
+        );
     }
     if (props.index === props.listMax - 1) {
         return (
-            <HorizontalView>
-                <AvatarImageContainer>
-                    <AvatarImage source={props.image} resizeMode='contain' />
-                </AvatarImageContainer><SpaceBeforeAvatar />
-            </HorizontalView>)
+          <HorizontalView>
+            {isActiveContact ? (
+              <ActiveAvatarImageContainer>
+                <AvatarImage source={props.image} resizeMode="contain" />
+              </ActiveAvatarImageContainer>
+            ) : (
+              <AvatarImageContainer>
+                <AvatarImage source={props.image} resizeMode="contain" />
+              </AvatarImageContainer>
+            )}
+            <SpaceBeforeAvatar />
+          </HorizontalView>
+        );
     }
     return (
-        <HorizontalView>
-            <AvatarImageContainer>
-                <AvatarImage source={props.image} resizeMode='contain' />
-            </AvatarImageContainer>
-        </HorizontalView>
+      <HorizontalView>
+        {isActiveContact ? (
+          <ActiveAvatarImageContainer>
+            <AvatarImage source={props.image} resizeMode="contain" />
+          </ActiveAvatarImageContainer>
+        ) : (
+          <AvatarImageContainer>
+            <AvatarImage source={props.image} resizeMode="contain" />
+          </AvatarImageContainer>
+        )}
+      </HorizontalView>
     );
 };
 
