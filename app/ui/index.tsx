@@ -8,21 +8,25 @@ import ContactDetails, {
   CONTACT_DETAIL_HEIGHT,
 } from "./widgets/ContactDetails";
 
+// Using Styled-Components for more component accessibility.
 const Background = styled.View`
   flex: 1;
 `;
 const AvatarListContainer = styled.View`
   height: ${AVATAR_IMAGE_SIZE}px;
 `;
+
 const contacts: React.FC = () => {
+  // Local State Decalared First
   const [contactsData, setContactsData] = useState<ContactDataType[]>([]);
   const [activeContactIndex, setActiveContactIndex] = useState<number>(0);
-  // sets which of the lists is scrolling at a given time. This separates controller mode from content mode.
-  const [scrollingList, setScrolling] = useState<string>("");
+  const [scrollingList, setScrolling] = useState<string>(""); //This separates controller mode from content mode.
 
+  // Local refs
   const imagesListRef = useRef<FlatList>(null);
   const detailsListRef = useRef<FlatList>(null);
 
+  // Getting Data like in a real world application.
   const getData = async () => {
     const myData = await data;
     //console.log(myData)
@@ -35,6 +39,7 @@ const contacts: React.FC = () => {
     }
   }, [contactsData]);
 
+  // Using Avatars as the Scroll Controller
   const handleAvatarScroll = (event: {
     nativeEvent: { contentOffset: { x: number } };
   }) => {
@@ -51,6 +56,8 @@ const contacts: React.FC = () => {
       });
     }
   };
+
+  // Using Details as the Scroll Controller
   const handleDetailsScroll = (event: {
     nativeEvent: { contentOffset: { y: number } };
   }) => {
@@ -65,8 +72,9 @@ const contacts: React.FC = () => {
     }
   };
 
+  // Handles each avatar button.
   const handleAvatarPress = (index: number) => {
-    setScrolling("")
+    setScrolling("");
     setActiveContactIndex(index);
     imagesListRef.current?.scrollToOffset({
       animated: true,

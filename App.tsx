@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+// Navigation dependences are not necessary but are nice to have.
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
