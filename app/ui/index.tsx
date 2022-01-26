@@ -67,6 +67,14 @@ const contacts: React.FC = () => {
 
   const handleAvatarPress = (index: number) => {
     setActiveContactIndex(index);
+    imagesListRef.current?.scrollToOffset({
+      animated: true,
+      offset: index * AVATAR_IMAGE_SIZE,
+    });
+    detailsListRef.current?.scrollToOffset({
+      animated: true,
+      offset: index * CONTACT_DETAIL_HEIGHT,
+    });
   };
 
   return (
@@ -78,6 +86,7 @@ const contacts: React.FC = () => {
           onScrollBeginDrag={() => setScrolling("Avatars")}
           onScroll={handleAvatarScroll}
           scrollEventThrottle={16}
+          testID="AvatarScrollView"
           snapToInterval={AVATAR_IMAGE_SIZE}
           horizontal
           showsHorizontalScrollIndicator={false}
@@ -96,6 +105,7 @@ const contacts: React.FC = () => {
       <FlatList
         ref={detailsListRef}
         data={contactsData}
+        testID="DetailsScrollView"
         onScrollBeginDrag={() => setScrolling("Details")}
         snapToInterval={CONTACT_DETAIL_HEIGHT}
         onScroll={handleDetailsScroll}

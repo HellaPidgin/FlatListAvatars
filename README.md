@@ -9,3 +9,7 @@
 ## Snake & Carmel Case
 - Snake case is used in all caps for constants
 - Camel case is used for everything else.
+
+## ScrollView Coupling
+- FlatList could also round up to the next index for a different scrolling effect.
+- Another wat to animate `FlatList` would be with React-Native `Animated` and `scrollTo worklets`

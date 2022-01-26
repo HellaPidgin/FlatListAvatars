@@ -48,7 +48,7 @@ const AboutMeText = styled.Text`
 
 const ContactDetails = (props: PropTypes) => {
     return (
-        <Container>
+        <Container testID={"Detail" + props.id}>
             <NameTitleContainer>
                 <NameText>
                     <FirstNameText>{props.first_name}</FirstNameText> {props.last_name}

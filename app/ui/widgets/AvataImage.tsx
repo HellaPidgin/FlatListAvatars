@@ -59,12 +59,12 @@ const AvataImage = (props: PropTypes) => {
           <HorizontalView>
             <SpaceBeforeAvatar />
             {isActiveContact ? (
-              <ActiveAvatarImageContainer>
-                <AvatarImage source={props.image} resizeMode="contain" />
+              <ActiveAvatarImageContainer onPress={() => props.handleAvatarPress(props.index)}>
+                <AvatarImage source={props.image} testID={"avatar" + props.index.toString()} resizeMode="contain" />
               </ActiveAvatarImageContainer>
             ) : (
-              <AvatarImageContainer>
-                <AvatarImage source={props.image} resizeMode="contain" />
+              <AvatarImageContainer onPress={() => props.handleAvatarPress(props.index)}>
+                <AvatarImage source={props.image} testID={"avatar" + props.index.toString()} resizeMode="contain" />
               </AvatarImageContainer>
             )}
           </HorizontalView>
@@ -74,12 +74,12 @@ const AvataImage = (props: PropTypes) => {
         return (
           <HorizontalView>
             {isActiveContact ? (
-              <ActiveAvatarImageContainer>
-                <AvatarImage source={props.image} resizeMode="contain" />
+              <ActiveAvatarImageContainer onPress={() => props.handleAvatarPress(props.index)}>
+                <AvatarImage source={props.image} testID={"avatar" + props.index.toString()} resizeMode="contain" />
               </ActiveAvatarImageContainer>
             ) : (
-              <AvatarImageContainer>
-                <AvatarImage source={props.image} resizeMode="contain" />
+              <AvatarImageContainer onPress={() => props.handleAvatarPress(props.index)}>
+                <AvatarImage source={props.image} testID={"avatar" + props.index.toString()} resizeMode="contain" />
               </AvatarImageContainer>
             )}
             <SpaceBeforeAvatar />
@@ -89,12 +89,12 @@ const AvataImage = (props: PropTypes) => {
     return (
       <HorizontalView>
         {isActiveContact ? (
-          <ActiveAvatarImageContainer>
-            <AvatarImage source={props.image} resizeMode="contain" />
+          <ActiveAvatarImageContainer onPress={() => props.handleAvatarPress(props.index)}>
+            <AvatarImage source={props.image} testID={"avatar" + props.index.toString()} resizeMode="contain" />
           </ActiveAvatarImageContainer>
         ) : (
-          <AvatarImageContainer>
-            <AvatarImage source={props.image} resizeMode="contain" />
+          <AvatarImageContainer onPress={() => props.handleAvatarPress(props.index)}>
+            <AvatarImage source={props.image} testID={"avatar" + props.index.toString()} resizeMode="contain" />
           </AvatarImageContainer>
         )}
       </HorizontalView>
