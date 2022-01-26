@@ -66,6 +66,7 @@ const contacts: React.FC = () => {
   };
 
   const handleAvatarPress = (index: number) => {
+    setScrolling("")
     setActiveContactIndex(index);
     imagesListRef.current?.scrollToOffset({
       animated: true,
